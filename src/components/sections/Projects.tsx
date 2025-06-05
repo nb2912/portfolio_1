@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import type { FC, ReactNode, JSXElementConstructor } from 'react';
-import type { MotionProps } from 'framer-motion';
+import type { FC } from 'react';
 
 interface Project {
   id: number;
@@ -68,9 +67,7 @@ const projects: Project[] = [
   }
 ];
 
-type MotionComponent = JSXElementConstructor<MotionProps>;
-
-const ProjectCard: FC<{ project: Project }> = ({ project }): JSX.Element => {
+const ProjectCard: FC<{ project: Project }> = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const cardVariants = {

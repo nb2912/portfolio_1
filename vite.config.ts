@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/',
+  base: './',
   server: {
     port: 3000,
     open: true,
@@ -13,6 +13,12 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: false,
     minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
     rollupOptions: {
       output: {
         manualChunks: {
@@ -22,5 +28,9 @@ export default defineConfig({
         },
       },
     },
+    chunkSizeWarningLimit: 1000,
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'framer-motion', 'three'],
   },
 }); 

@@ -16,6 +16,6 @@ export const config: Config = {
     publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '',
   },
   contact: {
-    email: 'your.email@yourdomain.com', // Replace with your actual email
+    email: 'nb7687@srmist.edu.in',
   },
 }; 

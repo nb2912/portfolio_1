@@ -219,39 +219,6 @@ const Skills = () => {
         <SkillCategory title="Backend Development" skills={backendSkills} delay={0.2} />
         <SkillCategory title="Tools & Technologies" skills={toolsSkills} delay={0.4} />
       </div>
-
-      <motion.div
-        className="text-center mt-16"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <p className="text-text/80 mb-6">
-          Always learning and exploring new technologies to stay up-to-date with the latest trends.
-        </p>
-        <motion.a
-          href="/resume.pdf"
-          className="btn-primary inline-flex items-center gap-2"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <span>View Full Resume</span>
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M14 5l7 7m0 0l-7 7m7-7H3"
-            />
-          </svg>
-        </motion.a>
-      </motion.div>
     </section>
   );
 };

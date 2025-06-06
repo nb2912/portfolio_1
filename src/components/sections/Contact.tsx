@@ -1,8 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { isValidEmail, isValidName, isValidMessage } from '../../utils/validation';
 import { config } from '../../config';
+import { toast } from 'react-hot-toast';
+import { emailjsConfig } from '../../config/emailjs';
 
 interface FormData {
   name: string;
@@ -48,7 +50,7 @@ const socialLinks = [
 
 const Contact = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<FormData>>({});
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -80,146 +82,160 @@ const Contact = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    
-    if (!validateForm()) {
-      return;
-    }
-
-    setStatus('sending');
+    setIsSubmitting(true);
 
     try {
-      await emailjs.sendForm(
-        config.emailJs.serviceId,
-        config.emailJs.templateId,
-        formRef.current!,
-        config.emailJs.publicKey
+      const result = await emailjs.send(
+        emailjsConfig.serviceId,
+        emailjsConfig.templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_name: 'Nihal', // Your name
+        },
+        emailjsConfig.publicKey
       );
-      setStatus('success');
-      setFormData(initialFormData);
+
+      if (result.text === 'OK') {
+        toast.success('Message sent successfully!');
+        setFormData({ name: '', email: '', message: '' });
+      }
     } catch (error) {
-      console.error('Failed to send email:', error);
-      setStatus('error');
+      console.error('Error sending email:', error);
+      toast.error('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
-    <section id="contact" className="py-20 bg-gray-900">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="relative py-20 lg:py-32">
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-primary/5" />
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full filter blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-72 h-72 bg-accent/10 rounded-full filter blur-3xl" />
+        </div>
+      </div>
+
+      <div className="container-section">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto"
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl font-bold text-center mb-8">Get in Touch</h2>
-          <p className="text-gray-400 text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h2>
+          <p className="text-text/70 text-lg max-w-2xl mx-auto">
             Have a question or want to work together? Feel free to reach out!
           </p>
-
-          <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium mb-2">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className={`w-full px-4 py-2 rounded-lg bg-white/5 border focus:ring-1 outline-none transition-colors ${
-                  errors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-white/10 focus:border-primary focus:ring-primary'
-                }`}
-              />
-              {errors.name && (
-                <p className="text-red-400 text-sm mt-1">{errors.name}</p>
-              )}
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium mb-2">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className={`w-full px-4 py-2 rounded-lg bg-white/5 border focus:ring-1 outline-none transition-colors ${
-                  errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-white/10 focus:border-primary focus:ring-primary'
-                }`}
-              />
-              {errors.email && (
-                <p className="text-red-400 text-sm mt-1">{errors.email}</p>
-              )}
-            </div>
-
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium mb-2">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                rows={4}
-                className={`w-full px-4 py-2 rounded-lg bg-white/5 border focus:ring-1 outline-none transition-colors resize-none ${
-                  errors.message ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-white/10 focus:border-primary focus:ring-primary'
-                }`}
-              />
-              {errors.message && (
-                <p className="text-red-400 text-sm mt-1">{errors.message}</p>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              disabled={status === 'sending'}
-              className={`w-full px-6 py-3 rounded-lg font-medium transition-colors ${
-                status === 'sending'
-                  ? 'bg-gray-600 cursor-not-allowed'
-                  : 'bg-primary hover:bg-primary/90'
-              }`}
-            >
-              {status === 'sending' ? 'Sending...' : 'Send Message'}
-            </button>
-
-            {status === 'success' && (
-              <p className="text-green-400 text-sm text-center">Message sent successfully!</p>
-            )}
-            {status === 'error' && (
-              <p className="text-red-400 text-sm text-center">
-                Error sending message. Please try again or contact directly via email.
-              </p>
-            )}
-          </form>
-
-          <div className="mt-12">
-            <h3 className="text-xl font-semibold text-center mb-6">Or connect with me on</h3>
-            <div className="flex justify-center space-x-6">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-primary transition-colors"
-                  aria-label={link.name}
-                >
-                  {link.icon}
-                </a>
-              ))}
-            </div>
-          </div>
         </motion.div>
+
+        <motion.form
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          onSubmit={handleSubmit}
+          className="max-w-2xl mx-auto space-y-6"
+        >
+          <div className="space-y-2">
+            <label htmlFor="name" className="block text-sm font-medium text-white">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary transition-colors duration-200 text-white placeholder-gray-400"
+              placeholder="Your name"
+            />
+            {errors.name && (
+              <p className="text-red-400 text-sm mt-1">{errors.name}</p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <label htmlFor="email" className="block text-sm font-medium text-white">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary transition-colors duration-200 text-white placeholder-gray-400"
+              placeholder="Your email"
+            />
+            {errors.email && (
+              <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <label htmlFor="message" className="block text-sm font-medium text-white">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              value={formData.message}
+              onChange={handleChange}
+              rows={6}
+              className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary transition-colors duration-200 resize-none text-white placeholder-gray-400"
+              placeholder="Your message"
+            />
+            {errors.message && (
+              <p className="text-red-400 text-sm mt-1">{errors.message}</p>
+            )}
+          </div>
+
+          <motion.button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full btn-primary py-3 px-6 text-lg relative overflow-hidden group disabled:opacity-70 disabled:cursor-not-allowed"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <span className="relative z-10">
+              {isSubmitting ? 'Sending...' : 'Send Message'}
+            </span>
+            <motion.div
+              className="absolute inset-0 bg-accent opacity-0 group-hover:opacity-100"
+              initial={{ x: "-100%" }}
+              whileHover={{ x: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.button>
+        </motion.form>
+
+        <div className="mt-12">
+          <h3 className="text-xl font-semibold text-center mb-6">Or connect with me on</h3>
+          <div className="flex justify-center space-x-6">
+            {socialLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-primary transition-colors"
+                aria-label={link.name}
+              >
+                {link.icon}
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

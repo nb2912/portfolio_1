@@ -12,53 +12,29 @@ interface TimelineItem {
 
 const timelineItems: TimelineItem[] = [
   {
-    title: 'Senior Software Engineer',
-    organization: 'Tech Innovators Inc.',
-    period: '2022 - Present',
+    title: 'Software Developer',
+    organization: 'Team Envision',
+    period: '2023 - Present',
     description: [
-      'Lead a team of 5 developers in building scalable web applications',
-      'Implemented microservices architecture reducing system latency by 40%',
-      'Mentored junior developers and conducted code reviews',
+      'Developed and maintained several web application',
+      'Implemented responsive designs and modern UI components',
+      'Worked with React, TypeScript, and Firebase',
     ],
     type: 'work',
-    skills: ['React', 'Node.js', 'AWS', 'Docker', 'Kubernetes']
+    skills: ['React', 'TypeScript', 'Firebase', 'Tailwind CSS']
   },
   {
-    title: 'Full Stack Developer',
-    organization: 'Digital Solutions Ltd.',
-    period: '2020 - 2022',
+    title: 'Bachelor of Technology',
+    organization: 'SRM Institute of Science and Technology',
+    period: '2023 - 2027',
     description: [
-      'Developed and maintained multiple client projects using React and Node.js',
-      'Integrated AI/ML features improving user engagement by 25%',
-      'Collaborated with UX team to implement responsive designs',
-    ],
-    type: 'work',
-    skills: ['React', 'Node.js', 'MongoDB', 'Python', 'TensorFlow']
-  },
-  {
-    title: 'Master of Computer Science',
-    organization: 'Tech University',
-    period: '2018 - 2020',
-    description: [
-      'Specialized in Artificial Intelligence and Machine Learning',
-      'Published research paper on Neural Networks',
-      'GPA: 3.9/4.0',
+      'Computer Science Engineering',
+      'Specialized in Web Development and Cloud Computing',
+      'Active member of coding clubs and tech communities',
     ],
     type: 'education',
-    skills: ['Machine Learning', 'Neural Networks', 'Python', 'Research']
-  },
-  {
-    title: 'Bachelor of Computer Science',
-    organization: 'State University',
-    period: '2014 - 2018',
-    description: [
-      'Major in Computer Science with minor in Mathematics',
-      "Dean's List all semesters",
-      'Led University Coding Club',
-    ],
-    type: 'education',
-    skills: ['Algorithms', 'Data Structures', 'Java', 'C++']
-  },
+    skills: ['Web Development', 'Cloud Computing', 'Data Structures', 'Algorithms']
+  }
 ];
 
 const TimelineCard: React.FC<{ item: TimelineItem; index: number }> = ({ item, index }) => {

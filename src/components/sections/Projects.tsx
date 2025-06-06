@@ -15,54 +15,54 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: "SymphonySmith",
-    description: "Developed a sophisticated music generation system using Python and TensorFlow that creates original compositions through deep learning. Implemented advanced audio processing algorithms and achieved 85% user satisfaction in beta testing.",
-    tags: ["Python", "TensorFlow", "Music21", "NumPy", "Scikit-learn"],
-    githubUrl: "https://github.com/archeeetah/SymphonySmith",
+    title: "AI Interview Platform",
+    description: "A comprehensive AI-powered interview preparation platform combining TypeScript frontend and Python backend. Helps users practice interviews with real-time AI feedback and analysis.",
+    tags: ["TypeScript", "Python", "React", "FastAPI", "AI/ML", "WebRTC"],
+    githubUrl: "https://github.com/nb2912/ai-interview-frontend",
     features: [
-      "Engineered ML models with 90% accuracy in style replication",
-      "Processed and analyzed 10,000+ MIDI files for training",
-      "Implemented real-time audio visualization with WebGL",
-      "Reduced generation time by 40% through optimization"
+      "Real-time video interview simulation with AI analysis",
+      "Advanced speech-to-text and sentiment analysis",
+      "Personalized feedback and improvement suggestions",
+      "Interactive dashboard with performance metrics"
     ]
   },
   {
     id: 2,
-    title: "Library Management System",
-    description: "Built a full-stack library management solution that streamlined operations for 1000+ books and 500+ users. Reduced manual processing time by 60% and implemented automated notification system with 99% delivery rate.",
-    tags: ["Python", "SQLite", "Flask", "Bootstrap", "RESTful API"],
-    githubUrl: "https://github.com/nb2912/Library-Management",
+    title: "Farmer Market Place",
+    description: "An e-commerce platform connecting farmers directly with consumers, eliminating middlemen and ensuring fair prices. Features real-time inventory management and secure payment processing.",
+    tags: ["HTML", "CSS", "JavaScript", "Node.js", "MongoDB"],
+    githubUrl: "https://github.com/nb2912/farmer-mareket-place",
     features: [
-      "Designed scalable database schema handling 1000+ records",
-      "Implemented RESTful API with 99.9% uptime",
-      "Reduced book checkout time from 5 mins to 30 seconds",
-      "Automated overdue notifications with email integration"
+      "Direct farmer-to-consumer marketplace interface",
+      "Real-time inventory and order management",
+      "Secure payment gateway integration",
+      "Location-based farmer discovery system"
     ]
   },
   {
     id: 3,
-    title: "AI Interview Assistant",
-    description: "Created an innovative AI-powered interview preparation platform using TypeScript and OpenAI API. Achieved 92% positive user feedback and helped 100+ users prepare for technical interviews through smart feedback generation.",
-    tags: ["TypeScript", "React", "OpenAI API", "TailwindCSS", "Next.js"],
-    githubUrl: "https://github.com/nb2912/ai-interview-frontend",
+    title: "Solo Circle",
+    description: "A modern social media platform built with JavaScript and modern web technologies. Focused on creating meaningful connections and engaging user experiences through a clean, intuitive interface.",
+    tags: ["JavaScript", "React", "Node.js", "MongoDB", "Express.js"],
+    githubUrl: "https://github.com/nb2912/solo-circle",
     features: [
-      "Integrated OpenAI API for real-time response analysis",
-      "Built responsive UI with 98% mobile compatibility",
-      "Implemented custom algorithms for feedback generation",
-      "Achieved 45% improvement in user interview performance"
+      "Implemented real-time messaging and notifications",
+      "Built responsive and interactive UI components",
+      "Integrated secure user authentication system",
+      "Developed RESTful API endpoints for data management"
     ]
   },
   {
     id: 4,
-    title: "Voice Assistant",
-    description: "Engineered a powerful voice assistant using Python and advanced NLP techniques. Supports 50+ custom commands and achieved 95% accuracy in voice recognition across different accents and environments.",
-    tags: ["Python", "Speech Recognition", "NLP", "APIs", "PyAudio"],
-    githubUrl: "https://github.com/nb2912/Voice-Assistant",
+    title: "Library Management System",
+    description: "A comprehensive library management solution built with Python and modern web technologies. Streamlines book tracking, user management, and library operations.",
+    tags: ["Python", "Flask", "SQLite", "Bootstrap", "RESTful API"],
+    githubUrl: "https://github.com/nb2912/Library-Management",
     features: [
-      "Implemented wake word detection with 98% accuracy",
-      "Integrated 10+ external APIs for diverse functionality",
-      "Optimized response time to under 1 second",
-      "Developed custom NLP model for intent recognition"
+      "Automated book checkout and return system",
+      "User authentication and role-based access",
+      "Real-time availability tracking",
+      "Email notification system for due dates"
     ]
   }
 ];
@@ -101,99 +101,102 @@ const ProjectCard: FC<{ project: Project }> = ({ project }) => {
       whileHover="hover"
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="relative group"
+      className="relative group h-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="card-glass overflow-hidden">
-        {/* Project Header with Gradient - Adjusted for mobile */}
-        <div className="h-40 sm:h-48 relative">
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20"
-            animate={{
-              opacity: isHovered ? 1 : 0.7,
-              scale: isHovered ? 1.05 : 1
-            }}
-            transition={{ duration: 0.3 }}
-          />
-          <div className="relative z-10 p-4 sm:p-6 h-full flex flex-col justify-between">
+      <div className="card-glass overflow-hidden h-full flex flex-col">
+        {/* Project Header with Gradient */}
+        <div className="p-4 sm:p-6 lg:p-8 flex-grow">
+          <div className="relative z-10 h-full flex flex-col">
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-t-lg -m-4 sm:-m-6 lg:-m-8"
+              animate={{
+                opacity: isHovered ? 1 : 0.7,
+                scale: isHovered ? 1.05 : 1
+              }}
+              transition={{ duration: 0.3 }}
+            />
+            
+            {/* Project Title */}
             <motion.h3 
-              className="text-xl sm:text-2xl font-bold heading-gradient"
+              className="text-xl sm:text-2xl lg:text-3xl font-bold heading-gradient mb-3 sm:mb-4 relative"
               animate={{ scale: isHovered ? 1.05 : 1 }}
               transition={{ duration: 0.3 }}
             >
               {project.title}
             </motion.h3>
+
+            {/* Project Description */}
             <motion.p 
-              className="text-sm sm:text-base text-text/80 line-clamp-2 sm:line-clamp-3"
+              className="text-sm sm:text-base lg:text-lg text-text/80 mb-6 relative"
               animate={{ opacity: isHovered ? 0.9 : 0.7 }}
               transition={{ duration: 0.3 }}
             >
               {project.description}
             </motion.p>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 sm:gap-2.5 lg:gap-3 mb-6 relative">
+              {project.tags.map((tag, index) => (
+                <motion.span
+                  key={index}
+                  variants={tagVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  whileHover="hover"
+                  custom={index}
+                  transition={{ duration: 0.2, delay: index * 0.1 }}
+                  className="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-xs sm:text-sm lg:text-base bg-primary/10 text-primary font-medium"
+                >
+                  {tag}
+                </motion.span>
+              ))}
+            </div>
+
+            {/* Features */}
+            <div className="space-y-3 sm:space-y-4 relative flex-grow">
+              <motion.h4 
+                className="text-base sm:text-lg lg:text-xl font-semibold text-primary"
+                animate={{ opacity: isHovered ? 1 : 0.8 }}
+                transition={{ duration: 0.3 }}
+              >
+                Key Features:
+              </motion.h4>
+              <ul className="space-y-2 sm:space-y-3">
+                {project.features.map((feature, index) => (
+                  <motion.li
+                    key={index}
+                    variants={featureVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    custom={index}
+                    className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base lg:text-lg text-text/80"
+                  >
+                    <motion.span
+                      className="text-primary mt-1.5"
+                      animate={{ scale: isHovered ? 1.2 : 1 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      •
+                    </motion.span>
+                    {feature}
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
-        {/* Project Info - Mobile optimized spacing */}
-        <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
-          {/* Tags with staggered animation - Responsive sizing */}
-          <div className="flex flex-wrap gap-1.5 sm:gap-2">
-            {project.tags.map((tag, index) => (
-              <motion.span
-                key={index}
-                variants={tagVariants}
-                initial="hidden"
-                whileInView="visible"
-                whileHover="hover"
-                custom={index}
-                transition={{ duration: 0.2, delay: index * 0.1 }}
-                className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm bg-primary/10 text-primary"
-              >
-                {tag}
-              </motion.span>
-            ))}
-          </div>
-
-          {/* Features with animated bullets - Adjusted spacing */}
-          <div className="space-y-2 sm:space-y-3">
-            <motion.h4 
-              className="text-base sm:text-lg font-semibold text-primary"
-              animate={{ opacity: isHovered ? 1 : 0.8 }}
-              transition={{ duration: 0.3 }}
-            >
-              Key Features:
-            </motion.h4>
-            <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base">
-              {project.features.map((feature, index) => (
-                <motion.li
-                  key={index}
-                  variants={featureVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  custom={index}
-                  className="flex items-start gap-1.5 sm:gap-2 text-text/80"
-                >
-                  <motion.span
-                    className="text-primary mt-1"
-                    animate={{ scale: isHovered ? 1.2 : 1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    •
-                  </motion.span>
-                  {feature}
-                </motion.li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Action Buttons - Mobile-friendly touch targets */}
-          <div className="flex flex-wrap gap-3 sm:gap-4 pt-2 sm:pt-4">
+        {/* Action Buttons */}
+        <div className="p-4 sm:p-6 lg:p-8 pt-2 sm:pt-4 lg:pt-6 mt-auto">
+          <div className="flex flex-wrap gap-3 sm:gap-4 lg:gap-6">
             {project.liveUrl && (
               <motion.a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary text-xs sm:text-sm relative overflow-hidden group min-h-[2.5rem] px-4 flex items-center justify-center"
+                className="btn-primary text-sm sm:text-base lg:text-lg relative overflow-hidden group flex-1"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -203,14 +206,14 @@ const ProjectCard: FC<{ project: Project }> = ({ project }) => {
                   whileHover={{ x: '100%' }}
                   transition={{ duration: 0.5 }}
                 />
-                Live Demo
+                <span className="relative z-10 py-2 sm:py-2.5 lg:py-3 block text-center">Live Demo</span>
               </motion.a>
             )}
             <motion.a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-outline text-xs sm:text-sm relative overflow-hidden group min-h-[2.5rem] px-4 flex items-center justify-center"
+              className="btn-outline text-sm sm:text-base lg:text-lg relative overflow-hidden group flex-1"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -220,7 +223,7 @@ const ProjectCard: FC<{ project: Project }> = ({ project }) => {
                 whileHover={{ x: '100%' }}
                 transition={{ duration: 0.5 }}
               />
-              View Code
+              <span className="relative z-10 py-2 sm:py-2.5 lg:py-3 block text-center">View Code</span>
             </motion.a>
           </div>
         </div>
@@ -231,22 +234,22 @@ const ProjectCard: FC<{ project: Project }> = ({ project }) => {
 
 const Projects: FC = (): JSX.Element => {
   return (
-    <section id="projects" className="container-section">
+    <section id="projects" className="container-section py-16 sm:py-20 lg:py-24">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="space-y-12 sm:space-y-16"
+        className="space-y-12 sm:space-y-16 lg:space-y-20"
       >
-        {/* Section Header - Mobile optimized */}
-        <div className="text-center space-y-4 sm:space-y-6">
+        {/* Section Header */}
+        <div className="text-center space-y-4 sm:space-y-6 lg:space-y-8">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-medium"
+            className="inline-block px-4 sm:px-6 py-1.5 sm:py-2 rounded-full bg-primary/10 text-primary text-sm sm:text-base lg:text-lg font-medium"
           >
             Featured Projects
           </motion.div>
@@ -255,7 +258,7 @@ const Projects: FC = (): JSX.Element => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold heading-gradient px-4"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold heading-gradient px-4"
           >
             Innovative Solutions<br />
             <span className="text-text/80">Through Code</span>
@@ -265,87 +268,53 @@ const Projects: FC = (): JSX.Element => {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             viewport={{ once: true }}
-            className="text-text/80 max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-4"
+            className="text-text/80 max-w-3xl mx-auto text-sm sm:text-base lg:text-lg xl:text-xl px-4"
           >
             Showcasing my expertise in full-stack development, AI/ML integration, and scalable architecture design. 
             Each project demonstrates my commitment to creating impactful solutions using cutting-edge technologies.
           </motion.p>
-          
-          {/* Stats - Mobile responsive grid */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-4 pt-2 sm:pt-4 px-4">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.1 }}
-              className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-primary/5 text-text/60 text-xs sm:text-sm"
-            >
-              1,500+ Hours of Coding
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.1 }}
-              className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-primary/5 text-text/60 text-xs sm:text-sm"
-            >
-              15+ Technologies Mastered
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.1 }}
-              className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-primary/5 text-text/60 text-xs sm:text-sm"
-            >
-              4 Complex Projects
-            </motion.div>
-          </div>
         </div>
 
-        {/* Projects Grid - Responsive layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-6">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              viewport={{ once: true }}
-            >
-              <ProjectCard project={project} />
-            </motion.div>
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
 
-        {/* Tech Stack - Mobile optimized */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center space-y-4 sm:space-y-6 pt-4 sm:pt-8 px-4"
-        >
-          <h3 className="text-xl sm:text-2xl font-semibold text-primary">Technologies I've Mastered</h3>
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
-            {Array.from(new Set(projects.flatMap(p => p.tags))).map((tech, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.1, backgroundColor: "rgba(78, 205, 196, 0.2)" }}
-                className="px-2 sm:px-4 py-1 sm:py-2 rounded-lg bg-background-lighter text-text/80 text-xs sm:text-sm"
-              >
-                {tech}
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        {/* Stats Section */}
+        <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-12">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.1 }}
+            className="px-4 sm:px-6 py-2 sm:py-3 rounded-lg bg-primary/5 text-text/60 text-xs sm:text-sm lg:text-base"
+          >
+            1,500+ Hours of Coding
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.1 }}
+            className="px-4 sm:px-6 py-2 sm:py-3 rounded-lg bg-primary/5 text-text/60 text-xs sm:text-sm lg:text-base"
+          >
+            15+ Technologies Mastered
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.1 }}
+            className="px-4 sm:px-6 py-2 sm:py-3 rounded-lg bg-primary/5 text-text/60 text-xs sm:text-sm lg:text-base"
+          >
+            4 Complex Projects
+          </motion.div>
+        </div>
       </motion.div>
     </section>
   );

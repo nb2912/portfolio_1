@@ -18,7 +18,7 @@ const Hero = () => {
   ];
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden py-20">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden py-12 sm:py-16 lg:py-20">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-primary/5" />
@@ -42,14 +42,14 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            <div className="space-y-4">
+            <div className="space-y-6">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
                 className="inline-block"
               >
-                <span className="relative inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20">
+                <span className="relative inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm sm:text-base">
                   <span className="relative">Hi, my name is</span>
                   <span className="absolute -right-1 -top-1 flex h-3 w-3">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -57,20 +57,22 @@ const Hero = () => {
                   </span>
                 </span>
               </motion.div>
-              <motion.h1
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="text-4xl md:text-6xl font-bold"
+                className="space-y-2"
               >
-                <span className="heading-gradient">Nihal</span>
-                <span className="block text-text/80 mt-2">Software Engineer</span>
-              </motion.h1>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold">
+                  <span className="heading-gradient">Nihal</span>
+                </h1>
+                <p className="text-2xl sm:text-3xl lg:text-4xl text-text/80">Software Engineer</p>
+              </motion.div>
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                className="text-xl md:text-2xl text-text/60"
+                className="text-xl sm:text-2xl lg:text-3xl text-text/60"
               >
                 <Typewriter
                   options={{
@@ -93,7 +95,7 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="text-text/70 text-lg max-w-lg leading-relaxed"
+              className="text-lg sm:text-xl text-text/70 max-w-lg leading-relaxed"
             >
               I build exceptional digital experiences that combine cutting-edge technology
               with intuitive design. Let's create something amazing together.
@@ -107,7 +109,7 @@ const Hero = () => {
             >
               <motion.a
                 href="#projects"
-                className="btn-primary group relative overflow-hidden text-center"
+                className="btn-primary text-center py-3 px-6 text-base sm:text-lg relative overflow-hidden group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -120,8 +122,24 @@ const Hero = () => {
                 />
               </motion.a>
               <motion.a
+                href="/Nihal_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline text-center py-3 px-6 text-base sm:text-lg relative overflow-hidden group"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="relative z-10 group-hover:text-background">Download Resume</span>
+                <motion.div
+                  className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-100"
+                  initial={{ y: "100%" }}
+                  whileHover={{ y: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.a>
+              <motion.a
                 href="#contact"
-                className="btn-outline group relative overflow-hidden text-center"
+                className="btn-outline text-center py-3 px-6 text-base sm:text-lg relative overflow-hidden group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

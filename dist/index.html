@@ -4,16 +4,72 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nihal - Software Engineer & Web Developer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="./assets/index-BHx6ND1z.js"></script>
-    <link rel="modulepreload" crossorigin href="./assets/vendor-UKc5BTJF.js">
-    <link rel="modulepreload" crossorigin href="./assets/three-CL5tPOvi.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-VykRB-T8.css">
+    <meta name="description" content="Portfolio website showcasing my work and experience" />
+    <title>Portfolio</title>
+    <style>
+      /* Initial loading state styles */
+      #root:empty {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #0A0A0F;
+        color: #F7FFF7;
+        font-family: Inter, system-ui, sans-serif;
+      }
+      
+      #root:empty::after {
+        content: "Loading...";
+        font-size: 1.5rem;
+      }
+
+      /* Error message styles */
+      .error-container {
+        padding: 20px;
+        text-align: center;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #0A0A0F;
+        color: #F7FFF7;
+        font-family: Inter, system-ui, sans-serif;
+      }
+    </style>
+    <!-- Preload critical assets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script type="module" crossorigin src="./assets/index.7lBJ-M6z.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/vendor.CeTvctZT.js">
+    <link rel="stylesheet" crossorigin href="./assets/index.CSV5D9ht.css">
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Handle script loading errors
+      window.addEventListener('error', function(event) {
+        if (event.target && (event.target.tagName === 'SCRIPT' || event.target.tagName === 'LINK')) {
+          const rootElement = document.getElementById('root');
+          if (rootElement) {
+            rootElement.innerHTML = `
+              <div class="error-container">
+                <h1 style="margin-bottom: 20px; font-size: 24px;">Failed to load resources</h1>
+                <p style="margin-bottom: 20px;">Please check your internet connection and try again.</p>
+                <button onclick="window.location.reload()" 
+                  style="padding: 10px 20px; background-color: #4ECDC4; border: none; border-radius: 5px; cursor: pointer; color: #0A0A0F; font-size: 16px">
+                  Reload Page
+                </button>
+              </div>
+            `;
+          }
+        }
+      }, true);
+
+      // Handle unhandled promise rejections
+      window.addEventListener('unhandledrejection', function(event) {
+        console.error('Unhandled promise rejection:', event.reason);
+      });
+    </script>
   </body>
 </html> 

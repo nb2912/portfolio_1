@@ -23,7 +23,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'framer-motion'],
-          // Split other large dependencies into separate chunks
           three: ['three', '@react-three/fiber', '@react-three/drei'],
         },
       },
@@ -32,5 +31,5 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'framer-motion', 'three'],
-  },
+  }
 }); 

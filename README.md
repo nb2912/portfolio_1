@@ -1,76 +1,59 @@
-# Portfolio Website
+# Nihal's Portfolio
 
-A modern, responsive portfolio website built with React, TypeScript, Vite, and TailwindCSS.
+A premium, high-performance portfolio website built with **React**, **TypeScript**, and **Vite**. This project features a modern "glassmorphism" design, smooth scroll animations, and a focus on visual excellence.
 
-## Features
+## 🚀 Features
 
-- Responsive design
-- Contact form with EmailJS integration
-- Form validation
-- Social media links
-- Modern UI with animations using Framer Motion
+-   **Dynamic Hero Section**: Interactive typewriter effects and floating code snippets.
+-   **Project Showcase**: Detailed cards for AI, Web, and System projects with glassmorphism effects.
+-   **Technical Skills**: Proficiency-based skill tracking with category filtering (Frontend, Backend, AI/ML, Tools).
+-   **Responsive Design**: Fully optimized for mobile, tablet, and desktop viewports.
+-   **Performance Focused**: 
+    -   Suspense-based lazy loading for all major sections.
+    -   Custom resource preloading logic to ensure smooth initial transition.
+    -   Vite-optimized build pipeline.
+-   **Robust Error Handling**: Global Error Boundaries and fallback UI for resource loading failures.
 
-## Setup
+## 🛠️ Tech Stack
 
-1. Clone the repository
-2. Install dependencies:
-```bash
-npm install
-```
+-   **Frontend**: React 18, TypeScript, Tailwind CSS
+-   **Animation**: Framer Motion, Typewriter-effect
+-   **Build Tool**: Vite
+-   **Deployment**: Optimized for Vercel/Netlify
 
-3. Create a `.env` file in the root directory with the following variables:
-```
-VITE_EMAILJS_SERVICE_ID=your_service_id
-VITE_EMAILJS_TEMPLATE_ID=your_template_id
-VITE_EMAILJS_PUBLIC_KEY=your_public_key
-```
+## 📂 Project Structure
 
-4. Update the configuration in `src/config.ts`:
-- Replace `your.email@yourdomain.com` with your actual email address
-- Update social media links in the Contact component
-
-5. Start the development server:
-```bash
-npm run dev
-```
-
-6. Build for production:
-```bash
-npm run build
-```
-
-## Environment Variables
-
-- `VITE_EMAILJS_SERVICE_ID`: Your EmailJS service ID
-- `VITE_EMAILJS_TEMPLATE_ID`: Your EmailJS template ID
-- `VITE_EMAILJS_PUBLIC_KEY`: Your EmailJS public key
-
-You can get these credentials by signing up at [EmailJS](https://www.emailjs.com/).
-
-## Project Structure
-
-```
+```text
 src/
-├── assets/        # Static assets
-├── components/    # React components
-├── styles/       # CSS styles
-├── utils/        # Utility functions
-├── App.tsx       # Main App component
-├── main.tsx      # Entry point
-└── config.ts     # Configuration file
+├── components/
+│   ├── layout/       # Navbar and structural components
+│   └── sections/     # Hero, About, Projects, Skills, Contact, etc.
+├── styles/           # Global CSS and Tailwind directives
+├── utils/            # Helper functions
+└── config.ts         # Global site configuration
 ```
 
-## Contact Form Template
+## 🏁 Getting Started
 
-When setting up your EmailJS template, make sure it includes the following variables:
-- `{{name}}`
-- `{{email}}`
-- `{{message}}`
+1.  **Clone the repository**
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
+3.  **Start development server**:
+    ```bash
+    npm run dev
+    ```
+4.  **Build for production**:
+    ```bash
+    npm run build
+    ```
 
-## Contributing
+## 👤 Author
 
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a new Pull Request 
+**Nihal**  
+Software Engineer | AI/ML Enthusiast
+
+---
+*Developed with a focus on premium aesthetics and performance.*
+ 

@@ -1,6 +1,5 @@
 import { Suspense, lazy, useEffect, useState } from 'react';
 import Navbar from './components/layout/Navbar';
-import { Toaster } from 'react-hot-toast';
 
 // Lazy load components
 const Hero = lazy(() => import('./components/sections/Hero'));
@@ -62,22 +61,19 @@ const App = () => {
   }
 
   return (
-    <>
-      <Toaster position="bottom-right" />
-      <div className="bg-background text-text">
-        <Navbar />
-        <main>
-          <Suspense fallback={<LoadingSpinner />}>
-            <Hero />
-            <About />
-            <Projects />
-            <Skills />
-            <Experience />
-            <Contact />
-          </Suspense>
-        </main>
-      </div>
-    </>
+    <div className="bg-background text-text">
+      <Navbar />
+      <main>
+        <Suspense fallback={<LoadingSpinner />}>
+          <Hero />
+          <About />
+          <Projects />
+          <Skills />
+          <Experience />
+          <Contact />
+        </Suspense>
+      </main>
+    </div>
   );
 };
 
